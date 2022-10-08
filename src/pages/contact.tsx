@@ -1,25 +1,24 @@
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
-const Contact = () => {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const formItems = [
-      'floating_email',
-      'floating_first_name',
-      'floating_last_name',
-      'floating_phone',
-      'floating_company',
-      'floating_message',
-    ];
+const formItems = [
+  'floating_email',
+  'floating_first_name',
+  'floating_last_name',
+  'floating_phone',
+  'floating_company',
+  'floating_message',
+];
 
-    const data: { [x: string]: string }[] = [];
+export default function Contact() {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data: { [x: string]: any }[] = [];
 
     formItems.forEach((item) => {
-      const element = e.target[item];
+      const element = e.target[item] || null;
       data.push({ [element.name]: element.value });
     });
-
     console.log('submit', data);
   };
 
@@ -125,15 +124,9 @@ const Contact = () => {
             name="floating_message"
             rows={4}
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder=""
+            placeholder="Your message"
             required
           />
-          <label
-            htmlFor="floating_message"
-            className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-          >
-            Your message
-          </label>
         </div>
 
         <button
@@ -145,6 +138,4 @@ const Contact = () => {
       </form>
     </Main>
   );
-};
-
-export default Contact;
+}

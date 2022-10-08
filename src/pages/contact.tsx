@@ -31,7 +31,7 @@ export default function Contact() {
         />
       }
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="xs:px-3 md:px-0">
         <div className="group relative z-0 mb-6 w-full">
           <input
             type="email"
